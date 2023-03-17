@@ -65,8 +65,9 @@ jobs:
 
       - name: check the git version
         run: |
-           echo $(git log --date=short --format='%s' --merges | awk {'print$14}' | awk -F ':' {'print$1'})
-           echo $(git log)
+           echo $(git log --date=short --format='%s' --merges)
+           
+           #echo $(git log)
 
 
       - name: Run the commit log command
