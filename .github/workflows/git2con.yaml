@@ -68,6 +68,9 @@ jobs:
            echo $(git log --merges)
 
            #echo $(git log)
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_GITHUB_TOKEN }}
+    
 
 
       - name: Run the commit log command
@@ -75,6 +78,8 @@ jobs:
            echo "BRANCH_NAME=$(git log --date=short --format='%s' --merges | awk {'print$14}' | awk -F ':' {'print$1'})" >> $GITHUB_ENV
             
            echo $BRANCH_NAME
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_GITHUB_TOKEN }}
 
 
       - name: test echo 
