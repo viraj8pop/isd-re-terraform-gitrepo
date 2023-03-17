@@ -65,8 +65,8 @@ jobs:
 
       - name: check the git version
         run: |
-           echo $(git log --date=short --format='%s' --merges)
-           
+           echo $(git log --date=short --format="%s" --merges)
+
            #echo $(git log)
 
 
