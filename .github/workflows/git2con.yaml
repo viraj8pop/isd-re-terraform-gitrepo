@@ -44,8 +44,6 @@ jobs:
     name: tag&release
     steps:
       - uses: actions/checkout@v2.3.4
-        with:
-          token: ${{ secrets.PAT_GITHUB_TOKEN }}
       
 # #      https://github.com/marketplace/actions/github-tag
 #       - name: Create and push tag
@@ -67,9 +65,12 @@ jobs:
 
       - name: check the git version
         run: |
-           echo $(git log --merges)
+           echo $(gh pr list --state merged)
 
-           #echo $(git log | awk {'print$14}' | awk -F ':' {'print$1'})
+           echo $(git log | awk {'print$14}' | awk -F ':' {'print$1'})
+
+
+           echo $(git log)
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_GITHUB_TOKEN }}
     
