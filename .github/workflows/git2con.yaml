@@ -63,9 +63,20 @@ jobs:
 #          tag_prefix: "RELTP_FE_"
 #          custom_tag: ${{ github.event.inputs.tag_name }}
 
+      - name: check the git version
+        run: |
+           echo $(git log --merges)
+
+           #echo $(git log)
+
 
       - name: Run the commit log command
         run: |
-           BRANCH_NAME=$(git log --date=short --format="%s" --merges  | awk {'print$6}' | awk -F '/' {'print$2'} | head -n 1)
-           echo "ISSUE_ID=$BRANCH_NAME" >> $GITHUB_ENV
-           echo $ISSUE_ID
+           echo "BRANCH_NAME=$(git log --date=short --format='%s' --merges | awk {'print$14}' | awk -F ':' {'print$1'})" >> $GITHUB_ENV
+            
+           echo $BRANCH_NAME
+
+
+      - name: test echo 
+        run: |
+           echo "this is workring"
