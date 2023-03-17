@@ -65,12 +65,8 @@ jobs:
 
       - name: check the git version
         run: |
-           echo $(gh pr list --state merged)
+           echo $(gh pr list --state merged | head -n 1 | awk '{print$4}')
 
-           echo $(git log | awk {'print$14}' | awk -F ':' {'print$1'})
-
-
-           echo $(git log)
         env:
           GITHUB_TOKEN: ${{ secrets.VIRAJ8_GITHUB_TOKEN }}
     
@@ -78,7 +74,7 @@ jobs:
 
       - name: Run the commit log command
         run: |
-           echo "BRANCH_NAME=$(git log --date=short --format='%s' --merges | awk {'print$14}' | awk -F ':' {'print$1'})" >> $GITHUB_ENV
+           echo "BRANCH_NAME=$(gh pr list --state merged | head -n 1 | awk '{print$4}')" >> $GITHUB_ENV
             
            echo $BRANCH_NAME
         env:
