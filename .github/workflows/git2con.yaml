@@ -65,17 +65,16 @@ jobs:
 
       - name: check the git version
         run: |
-           git log --date=short --format="%s" --merges  | awk {'print$6}' | awk -F '/' {'print$2'} | head -n 1
+           echo $(git log --date=short --format="%s" --merges  | awk {'print$6}' | awk -F '/' {'print$2'} | head -n 1)
            echo $(git --version)
 
 
       - name: Run the commit log command
         run: |
-           BRANCH_NAME=$(git log --date=short --format="%s" --merges  | awk {'print$6}' | awk -F '/' {'print$2'} | head -n 1)
+           echo "BRANCH_NAME=$(git log --date=short --format='%s' --merges  | awk {'print$6}' | awk -F '/' {'print$2'} | head -n 1)" >> $GITHUB_ENV
+            
            echo $BRANCH_NAME
-           echo "ISSUE_ID=$BRANCH_NAME" >> $GITHUB_ENV
-           echo $ISSUE_ID
-           echo "TEST=THISSIME" >> $GITHUB_ENV
+
 
       - name: test echo 
         run: |
