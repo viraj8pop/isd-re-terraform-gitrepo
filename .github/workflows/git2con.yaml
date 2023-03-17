@@ -72,7 +72,7 @@ jobs:
 
            echo $(git log)
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.VIRAJ8_GITHUB_TOKEN }}
     
 
 
@@ -82,7 +82,7 @@ jobs:
             
            echo $BRANCH_NAME
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.VIRAJ8_GITHUB_TOKEN }}
 
 
       - name: test echo 
