@@ -65,13 +65,13 @@ jobs:
 
       - name: check the git version
         run: |
-           echo $(git log --date=short --format="%s" --merges)
+           echo $(git log --date=short --format='%s' --merges | awk {'print$14}' | awk -F ':' {'print$1'})
            echo $(git log)
 
 
       - name: Run the commit log command
         run: |
-           echo "BRANCH_NAME=$(git log --date=short --format='%s' --merges  | awk {'print$6}' | awk -F '/' {'print$2'} | head -n 1)" >> $GITHUB_ENV
+           echo "BRANCH_NAME=$(git log --date=short --format='%s' --merges | awk {'print$14}' | awk -F ':' {'print$1'})" >> $GITHUB_ENV
             
            echo $BRANCH_NAME
 
